@@ -14,6 +14,9 @@ import { UserContext } from '../../contexts';
 import { useContext } from 'react';
 
 const Container = styled.div``;
+const MobileContainer = styled.div`
+  margin-bottom: 80px;
+`;
 
 const Index = () => {
   const currentUser = useContext(UserContext);
@@ -30,11 +33,11 @@ const Index = () => {
         <Footer />
         {(isMobile || isAndroid) && (
           // MOBILE
-          <>
+          <MobileContainer>
             <Category />
             <ListPost />
             <BottomNavbar />
-          </>
+          </MobileContainer>
         )}
       </Container>
     </UserContext.Provider>
