@@ -110,75 +110,76 @@ const Index = () => {
   };
   return (
     <>
-      {(isMobile || isAndroid) &&
-        // MOBILE
-        null}
-      <Title>热门游戏</Title>
-      <ButtonBar>
-        <NavMenu
-          direction='tiyu'
-          onClick={() => handleClick('tiyu')}
-        >
-          体育赛事
-        </NavMenu>
+      {isMobile || isAndroid ? null : (
+        <>
+          <Title>热门游戏</Title>
+          <ButtonBar>
+            <NavMenu
+              direction='tiyu'
+              onClick={() => handleClick('tiyu')}
+            >
+              体育赛事
+            </NavMenu>
 
-        <NavMenu
-          direction='real'
-          onClick={() => handleClick('real')}
-        >
-          真人娱乐
-        </NavMenu>
+            <NavMenu
+              direction='real'
+              onClick={() => handleClick('real')}
+            >
+              真人娱乐
+            </NavMenu>
 
-        <NavMenu
-          direction='lottry'
-          onClick={() => handleClick('lottry')}
-        >
-          全球彩票
-        </NavMenu>
+            <NavMenu
+              direction='lottry'
+              onClick={() => handleClick('lottry')}
+            >
+              全球彩票
+            </NavMenu>
 
-        <NavMenu
-          direction='game'
-          onClick={() => handleClick('game')}
-        >
-          电子游戏
-        </NavMenu>
+            <NavMenu
+              direction='game'
+              onClick={() => handleClick('game')}
+            >
+              电子游戏
+            </NavMenu>
 
-        <NavMenu
-          direction='esport'
-          onClick={() => handleClick('esport')}
-        >
-          电子竞技
-        </NavMenu>
+            <NavMenu
+              direction='esport'
+              onClick={() => handleClick('esport')}
+            >
+              电子竞技
+            </NavMenu>
 
-        <NavMenu
-          direction='chess'
-          onClick={() => handleClick('chess')}
-        >
-          真人棋牌
-        </NavMenu>
+            <NavMenu
+              direction='chess'
+              onClick={() => handleClick('chess')}
+            >
+              真人棋牌
+            </NavMenu>
 
-        <NavMenu
-          direction='fish'
-          onClick={() => handleClick('fish')}
-        >
-          捕鱼王
-        </NavMenu>
-      </ButtonBar>
+            <NavMenu
+              direction='fish'
+              onClick={() => handleClick('fish')}
+            >
+              捕鱼王
+            </NavMenu>
+          </ButtonBar>
 
-      <Container>
-        <Wrapper slideIndex={slideIndex}>
-          {sliderItems.map((item) => (
-            <Slide key={item.id}>
-              <ImgContainer>
-                <Image
-                  src={item.img}
-                  onClick={handleClickLink}
-                />
-              </ImgContainer>
-            </Slide>
-          ))}
-        </Wrapper>
-      </Container>
+          <Container>
+            <Wrapper slideIndex={slideIndex}>
+              {sliderItems.map((item) => (
+                <Slide key={item.id}>
+                  <ImgContainer>
+                    <Image
+                      src={item.img}
+                      onClick={handleClickLink}
+                    />
+                  </ImgContainer>
+                </Slide>
+              ))}
+            </Wrapper>
+          </Container>
+        </>
+      )}
     </>
   );
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { app_girl } from '../../assets';
 import Button from 'react-bootstrap/Button';
 import { mobile } from '../../responsive';
+import { isMobile, isAndroid } from 'react-device-detect';
 
 const Title = styled.h2`
   font-size: 50px;
@@ -48,33 +49,37 @@ const Index = () => {
 
   return (
     <>
-      <Title>畅游行动装置</Title>
-      <Container>
-        <LeftContainer>
-          <img
-            src={app_girl}
-            alt=''
-          />
-        </LeftContainer>
-        <RightContainer>
-          <InnerTitle>
-            全球梦体育 APP
-            <br />
-            随时随地 即刻拥有
-          </InnerTitle>
+      {isMobile || isAndroid ? null : (
+        <>
+          <Title>畅游行动装置</Title>
+          <Container>
+            <LeftContainer>
+              <img
+                src={app_girl}
+                alt=''
+              />
+            </LeftContainer>
+            <RightContainer>
+              <InnerTitle>
+                全球梦体育 APP
+                <br />
+                随时随地 即刻拥有
+              </InnerTitle>
 
-          <InnerText>
-            全球梦体育支持所有移动端，随时随意手机投注，提供全球热门游戏资源丰富体育赛事、电竞赛事、真人娱乐、彩票投注及电子游艺等，立即扫码即刻下载。
-          </InnerText>
-          <Button
-            onClick={handleClick}
-            size='lg'
-            variant='primary'
-          >
-            iOS & Andriod
-          </Button>
-        </RightContainer>
-      </Container>
+              <InnerText>
+                全球梦体育支持所有移动端，随时随意手机投注，提供全球热门游戏资源丰富体育赛事、电竞赛事、真人娱乐、彩票投注及电子游艺等，立即扫码即刻下载。
+              </InnerText>
+              <Button
+                onClick={handleClick}
+                size='lg'
+                variant='primary'
+              >
+                iOS & Andriod
+              </Button>
+            </RightContainer>
+          </Container>
+        </>
+      )}
     </>
   );
 };

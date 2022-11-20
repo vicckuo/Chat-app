@@ -1,6 +1,7 @@
 import { footerLogo } from '../../assets';
 import styled from 'styled-components';
 import { mobile } from '../../responsive';
+import { isMobile, isAndroid } from 'react-device-detect';
 
 const Container = styled.div`
   width: 1280px;
@@ -22,12 +23,18 @@ const Image = styled.img`
 
 const Index = () => {
   return (
-    <Container>
-      <Image
-        src={footerLogo}
-        alt=''
-      />
-    </Container>
+    <>
+      {isMobile || isAndroid ? null : (
+        <>
+          <Container>
+            <Image
+              src={footerLogo}
+              alt=''
+            />
+          </Container>
+        </>
+      )}
+    </>
   );
 };
 
