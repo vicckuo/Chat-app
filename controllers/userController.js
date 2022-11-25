@@ -1,6 +1,7 @@
 const mytable = require('../models/userModel');
 const brcypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const emails = require('../middleware/verifyToken');
 
 module.exports.register = async (req, res, next) => {
   try {
@@ -21,10 +22,19 @@ module.exports.register = async (req, res, next) => {
         id: user._id,
       },
       process.env.JWT_SEC,
-      { expiresIn: '3d' }
+      { expiresIn: '1d' }
     );
+    const emailToken = jwt.sign(
+      {
+        username: user.username,
+      },
+      process.env.JWT_SEC,
+      { expiresIn: '1h' }
+    );
+    emails.verifyUserEmail(req.body.email, req.body.username, emailToken);
+
     delete user.password;
-    return res.json({ status: true, user, accessToken });
+    return res.json({ status: true, user, accessToken, emailToken });
   } catch (e) {
     next(e);
   }
@@ -45,7 +55,7 @@ module.exports.login = async (req, res, next) => {
         id: user._id,
       },
       process.env.JWT_SEC,
-      { expiresIn: '3d' }
+      { expiresIn: '1d' }
     );
 
     delete user.password;
@@ -107,5 +117,47 @@ module.exports.updatePw = async (req, res, next) => {
     return res.json({ status: true, msg: '修改成功，下次请用新密码登入' });
   } catch (err) {
     res.status(500).json(err);
+  }
+};
+
+module.exports.verifyEmail = async (req, res, next) => {
+  try {
+    const { username, emailToken } = req.body;
+
+    const verify = jwt.verify(emailToken, process.env.JWT_SEC);
+
+    if (!verify) return res.json({ status: false, msg: '认证失败' });
+
+    await mytable.findOneAndUpdate(
+      { username },
+      {
+        confirmedEmail: true,
+      },
+      { new: true }
+    );
+    console.log('update user: ', username);
+    return res.json({ status: true, msg: '认证成功，请登入' });
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.ProfileVerifyEmail = async (req, res, next) => {
+  try {
+    const { email, username } = req.body;
+    const user = await mytable.findOne({
+      username: username.toLowerCase(),
+    });
+    const emailToken = jwt.sign(
+      {
+        username: user.username,
+      },
+      process.env.JWT_SEC,
+      { expiresIn: '1h' }
+    );
+    emails.verifyUserEmail(email, username, emailToken);
+    return res.json({ status: true, msg: 'Email验证信已发送，请至信箱验证' });
+  } catch (e) {
+    next(e);
   }
 };
