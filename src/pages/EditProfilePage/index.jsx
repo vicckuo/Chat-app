@@ -12,7 +12,7 @@ import TopBackNavBar from '../../components/mobile/TopBackNavBar';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthService from '../../Services/AuthService';
 import axios from 'axios';
-import { host } from '../../utils/APIRoutes';
+import { host, profileVerifyEmailRoute } from '../../utils/APIRoutes';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -62,8 +62,19 @@ const TextTitle = styled.label`
 const Text = styled.p`
   margin: auto 10px;
 `;
+const VerifyText = styled.p`
+  margin: auto 10px;
+  color: #21c821;
+`;
 
 const Btn = styled(Button)``;
+
+const VerifyLink = styled(Link)`
+  color: #ff4848;
+  &:hover {
+    color: red;
+  }
+`;
 
 const Back = styled(Link)`
   display: flex;
@@ -94,6 +105,31 @@ const Index = () => {
     nickname: '',
   });
 
+  const hanldeClickVerifyEmail = async () => {
+    try {
+      const user = await JSON.parse(localStorage.getItem('chat-app-user'));
+      const username = user.user.username;
+      const email = user.user.email;
+      const { data } = await axios.post(
+        profileVerifyEmailRoute,
+        {
+          username,
+          email,
+        },
+        {
+          headers: {
+            token: `Bearer ${user.accessToken}`,
+          },
+        }
+      );
+      if (data.status === true) {
+        // window.location.reload();
+        toast.success(data.msg, toastOptions);
+      }
+    } catch (error) {
+      toast.error(error.response.data, toastOptions);
+    }
+  };
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -161,6 +197,13 @@ const Index = () => {
                 <Info>
                   <TextTitle>Email</TextTitle>
                   <Text>{currentUser.user.email}</Text>
+                  {currentUser.user.confirmedEmail === false ? (
+                    <VerifyLink onClick={hanldeClickVerifyEmail}>
+                      (未验证)
+                    </VerifyLink>
+                  ) : (
+                    <VerifyText>(已验证)</VerifyText>
+                  )}
                 </Info>
               </Content>
             </Card>
