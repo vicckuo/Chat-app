@@ -3,7 +3,7 @@ const {
   login,
   update,
   setAvatar,
-  getAllUsers,
+  allUsers,
   updatePw,
   verifyEmail,
   ProfileVerifyEmail,
@@ -13,12 +13,16 @@ const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
   verifyUserEmail,
+  protect,
 } = require('../middleware/verifyToken');
 
 const router = require('express').Router();
 
+router.get('/', protect, allUsers);
+
 router.post('/register', register);
 router.post('/login', login);
+router.post('/setAvatar/:id', setAvatar);
 router.post('/verifyEmailToken', verifyEmail);
 router.post(
   '/profileVerifyEmailToken',

@@ -22,7 +22,7 @@ module.exports.register = async (req, res, next) => {
         id: user._id,
       },
       process.env.JWT_SEC,
-      { expiresIn: '1d' }
+      { expiresIn: '30d' }
     );
     const emailToken = jwt.sign(
       {
@@ -55,7 +55,7 @@ module.exports.login = async (req, res, next) => {
         id: user._id,
       },
       process.env.JWT_SEC,
-      { expiresIn: '1d' }
+      { expiresIn: '30d' }
     );
 
     delete user.password;
@@ -69,14 +69,18 @@ module.exports.login = async (req, res, next) => {
 module.exports.update = async (req, res, next) => {
   try {
     const { nickname } = req.body;
-    await mytable.findByIdAndUpdate(
+    const userData = await mytable.findByIdAndUpdate(
       req.params.id,
       {
         nickname: nickname,
       },
       { new: true }
     );
-    return res.json({ status: true, msg: '修改成功，重新登入更新资料' });
+    return res.json({
+      status: true,
+      msg: '修改成功',
+      nickname: userData.nickname,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -135,7 +139,6 @@ module.exports.verifyEmail = async (req, res, next) => {
       },
       { new: true }
     );
-    console.log('update user: ', username);
     return res.json({ status: true, msg: '认证成功，请登入' });
   } catch (e) {
     next(e);
@@ -160,4 +163,42 @@ module.exports.ProfileVerifyEmail = async (req, res, next) => {
   } catch (e) {
     next(e);
   }
+};
+
+module.exports.setAvatar = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const avatarImage = req.body.image;
+    const userData = await mytable.findByIdAndUpdate(
+      userId,
+      {
+        isAvatarImageSet: true,
+        avatarImage,
+      },
+      { new: true }
+    );
+    return res.json({
+      isSet: userData.isAvatarImageSet,
+      image: userData.avatarImage,
+    });
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+module.exports.allUsers = async (req, res, next) => {
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { username: { $regex: req.query.search, $options: 'i' } },
+          { email: { $regex: req.query.search, $options: 'i' } },
+        ],
+      }
+    : {};
+
+  const users = await mytable
+    .find(keyword)
+    .find({ _id: { $ne: req.params.id } })
+    .select(['username', 'avatarImage', 'nickname', 'email', 'isAdmin']);
+  res.send(users);
 };

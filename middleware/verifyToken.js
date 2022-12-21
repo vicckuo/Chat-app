@@ -1,5 +1,36 @@
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const mytable = require('../models/userModel');
+
+const protect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
+
+      //decodes token id
+      const decoded = jwt.verify(token, process.env.JWT_SEC);
+
+      req.user = await mytable.findById(decoded.id).select('-password');
+
+      next();
+    } catch (error) {
+      return res.status(401).json(error);
+    }
+  }
+
+  if (!token) {
+    try {
+      return res.status(401).json({ message: '未經驗證的操作！' });
+    } catch (error) {
+      return res.status(401).json(error);
+    }
+  }
+};
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.token;
@@ -78,4 +109,5 @@ module.exports = {
   verifyTokenAndAdmin,
   verifyTokenAndAuthorization,
   verifyUserEmail,
+  protect,
 };
