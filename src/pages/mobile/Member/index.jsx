@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import BottomNavbar from '../../../components/mobile/BottomNavbar';
 import { Logo } from '../../../assets';
 import Button from 'react-bootstrap/Button';
-import { UserContext } from '../../../contexts';
+import { UserContext } from '../../../Context/contexts';
 import { useContext } from 'react';
 import AuthService from '../../../Services/AuthService';
 
@@ -41,23 +41,45 @@ const Index = () => {
   return (
     <Container>
       <TopContainer>
-        <Img src={Logo}></Img>
         <MemberStatus>
-          {AuthService.isLogin() && (
-            <div>您好，{currentUser.user.username}</div>
+          {!AuthService.isLogin() && (
+            <>
+              <div>
+                <Img src={Logo}></Img>
+                <Btn
+                  href='#/login'
+                  variant='primary'
+                  size='sm'
+                >
+                  注册 / 登入
+                </Btn>
+              </div>
+            </>
           )}
-          {!AuthService.isLogin() && <div>尚未登入</div>}
 
           {AuthService.isLogin() && (
             //如果已登入
             <>
+              <div>
+                {currentUser.user.avatarImage ? (
+                  <Img
+                    src={`data:image/svg+xml;base64,${currentUser.user.avatarImage}`}
+                  ></Img>
+                ) : (
+                  <Img src={Logo}></Img>
+                )}
+                您好，
+                {currentUser.user.nickname
+                  ? currentUser.user.nickname
+                  : currentUser.user.username}
+              </div>
               <Btn
                 href='#/editprofile'
                 variant='primary'
                 size='sm'
               >
                 编辑资料
-              </Btn>{' '}
+              </Btn>
               <Btn
                 onClick={handleLogout}
                 variant='primary'
@@ -66,16 +88,6 @@ const Index = () => {
                 登出
               </Btn>
             </>
-          )}
-          {!AuthService.isLogin() && (
-            //如果已登出
-            <Btn
-              href='#/login'
-              variant='primary'
-              size='sm'
-            >
-              注册 / 登入
-            </Btn>
           )}
         </MemberStatus>
       </TopContainer>

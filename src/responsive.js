@@ -8,6 +8,14 @@ export const mobile = (props) => {
   `;
 };
 
+export const iPhoneSE = (props) => {
+  return css`
+    @media only screen and (max-width: 375px) {
+      ${props}
+    }
+  `;
+};
+
 // export const SurfaceDuo = (props) => {
 //     return css`
 //         @media only screen and (max-width: 717px)  {

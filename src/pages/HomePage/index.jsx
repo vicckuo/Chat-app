@@ -10,7 +10,7 @@ import ListPost from '../../components/mobile/ListPost';
 import BottomNavbar from '../../components/mobile/BottomNavbar';
 import { isMobile, isAndroid } from 'react-device-detect';
 import styled from 'styled-components';
-import { UserContext } from '../../contexts';
+import { UserContext } from '../../Context/contexts';
 import { useContext } from 'react';
 
 const Container = styled.div``;

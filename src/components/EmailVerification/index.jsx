@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { host } from '../../utils/APIRoutes';
 
 const Container = styled.div`
   width: 100%;
@@ -57,10 +58,10 @@ const Index = () => {
 
   async function verifyEmailToken(username, emailToken) {
     try {
-      const { data } = await axios.post(
-        'http://localhost:8899/api/auth/verifyEmailToken',
-        { username: username, emailToken: emailToken }
-      );
+      const { data } = await axios.post(`${host}/api/auth/verifyEmailToken`, {
+        username: username,
+        emailToken: emailToken,
+      });
 
       if (data.status === false) {
         return toast.error(data.msg, toastOptions);

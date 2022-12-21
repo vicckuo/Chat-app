@@ -1,0 +1,15 @@
+.color-nav {
+  background-color: #101434 !important;
+}
+
+.color-nav-text {
+  color: white;
+}
+
+.color-nav-text:hover {
+  color: #d6b385;
+}
+
+/* .color-nav-text:focus {
+  color: #d6b385 !important;
+} */

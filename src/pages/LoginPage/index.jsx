@@ -41,7 +41,6 @@ const Index = () => {
     draggable: true,
     theme: 'dark',
   };
-
   const navigate = useNavigate();
 
   useEffect(() => {

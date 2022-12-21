@@ -1,6 +1,6 @@
 import Header from '../../components/Header';
 import { useEffect, useState, useContext } from 'react';
-import { UserContext } from '../../contexts';
+import { UserContext } from '../../Context/contexts';
 import { useNavigate, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -151,9 +151,11 @@ const Index = () => {
         }
       );
       if (data.status === true) {
-        // window.location.reload();
+        user.user.nickname = data.nickname;
+        localStorage.setItem('chat-app-user', JSON.stringify(user));
         toast.success(data.msg, toastOptions);
         handleClose();
+        window.location.reload();
       }
     } catch (error) {
       toast.error(error.response.data, toastOptions);

@@ -5,13 +5,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { mobile } from '../../responsive';
 import { Logo } from '../../assets';
-import { UserContext } from '../../contexts';
+import { UserContext } from '../../Context/contexts';
 import { useContext } from 'react';
 import AuthService from '../../Services/AuthService';
 import './index.css';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const MainContainer = styled.div`
   ${mobile({ display: 'none' })}
+  color: white;
 `;
 
 const Index = () => {
@@ -48,7 +50,11 @@ const Index = () => {
                 //如果已登入
                 <>
                   <NavDropdown
-                    title={`您好，${currentUser.user.username}`}
+                    title={`您好，${
+                      currentUser.user.nickname
+                        ? currentUser.user.nickname
+                        : currentUser.user.username
+                    }`}
                     id='basic-nav-dropdown'
                   >
                     <NavDropdown.Item href='#/editprofile'>
@@ -59,6 +65,12 @@ const Index = () => {
                       登出
                     </NavDropdown.Item>
                   </NavDropdown>
+                  <Nav.Link
+                    className='color-nav-text'
+                    href='#/chats'
+                  >
+                    <QuestionAnswerIcon fontSize='large' />
+                  </Nav.Link>
                 </>
               )}
               {!AuthService.isLogin() && (
@@ -75,6 +87,12 @@ const Index = () => {
                     href='#/login'
                   >
                     登入
+                  </Nav.Link>
+                  <Nav.Link
+                    className='color-nav-text'
+                    href='#/chats'
+                  >
+                    <QuestionAnswerIcon fontSize='large' />
                   </Nav.Link>
                 </>
               )}
