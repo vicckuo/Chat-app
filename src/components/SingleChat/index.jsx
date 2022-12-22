@@ -129,7 +129,7 @@ const Index = ({ fetchAgain, setFetchAgain }) => {
   useEffect(() => {
     fetchMessages();
     selectedChatCompare.current = selectedChat;
-    console.log(selectedChatCompare.current);
+    // console.log(selectedChatCompare.current);
   }, [selectedChat]);
 
   const fetchMessages = async () => {
