@@ -20,7 +20,7 @@ const Index = () => {
         gradient={false}
         speed={100}
       >
-        本团队担保平台出款，保证出金，赢多少提多少！
+        我是一条公告消息
       </Marquee>
     </Container>
   );

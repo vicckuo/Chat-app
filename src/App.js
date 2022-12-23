@@ -8,7 +8,6 @@ import EditPasswordPage from './pages/EditProfilePage/EditPasswordPage';
 import ChatPage from './pages/ChatPage';
 import EmailVerification from './components/EmailVerification';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Agent from './pages/mobile/Agent';
 import WebPlatform from './pages/mobile/WebPlatform';
 import Member from './pages/mobile/Member';
 import { isMobile, isAndroid } from 'react-device-detect';
@@ -60,8 +59,8 @@ function App() {
               // MOBILE
               <>
                 <Route
-                  path='/agent'
-                  element={<Agent />}
+                  path='/chats'
+                  element={<ChatPage />}
                 ></Route>
                 <Route
                   path='/webplatform'

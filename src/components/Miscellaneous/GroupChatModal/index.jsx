@@ -38,12 +38,7 @@ const Index = ({ children }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => {
-    if (!currentUser.user.isAdmin) {
-      return toast.error('只有管理员可以创建', isAdmin);
-    }
-    setShow(true);
-  };
+  const handleShow = () => setShow(true);
 
   const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);

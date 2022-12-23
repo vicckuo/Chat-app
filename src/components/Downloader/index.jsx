@@ -44,14 +44,14 @@ const InnerText = styled.p`
 
 const Index = () => {
   const handleClick = () => {
-    window.open('https://mono-ex.com/qqm');
+    window.open('https://google.com');
   };
 
   return (
     <>
       {isMobile || isAndroid ? null : (
         <>
-          <Title>畅游行动装置</Title>
+          <Title>Title</Title>
           <Container>
             <LeftContainer>
               <img
@@ -61,13 +61,16 @@ const Index = () => {
             </LeftContainer>
             <RightContainer>
               <InnerTitle>
-                全球梦体育 APP
+                Chat APP
                 <br />
-                随时随地 即刻拥有
+                Download
               </InnerTitle>
 
               <InnerText>
-                全球梦体育支持所有移动端，随时随意手机投注，提供全球热门游戏资源丰富体育赛事、电竞赛事、真人娱乐、彩票投注及电子游艺等，立即扫码即刻下载。
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Maxime, dolore voluptatum? Ratione delectus quibusdam magni
+                iusto consequatur eos pariatur dicta necessitatibus vel modi
+                saepe non commodi reprehenderit atque, maxime nulla.
               </InnerText>
               <Button
                 onClick={handleClick}

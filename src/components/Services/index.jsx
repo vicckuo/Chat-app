@@ -66,42 +66,42 @@ const Index = () => {
     <>
       {isMobile || isAndroid ? null : (
         <>
-          <Title>顶尖优质服务</Title>
+          <Title>Our Services</Title>
           <Container>
             <Services>
               <Icon>
                 <BoltIcon sx={{ fontSize: 100 }} />
               </Icon>
-              <ServicesTitle>快速更新响应</ServicesTitle>
+              <ServicesTitle>Service1</ServicesTitle>
               <ServicesText>
-                我们的延迟是最低的。拥有较佳的响应速度，部分数据较同行竞品快0.5至1秒。
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </ServicesText>
             </Services>
             <Services>
               <Icon>
                 <MonetizationOnIcon sx={{ fontSize: 100 }} />
               </Icon>
-              <ServicesTitle>极具性价比</ServicesTitle>
+              <ServicesTitle>Service2</ServicesTitle>
               <ServicesText>
-                我们致力于提供具有成本效益的高质量服务，在节省资金的同时提高数据性能。
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </ServicesText>
             </Services>
             <Services>
               <Icon>
                 <QuestionAnswerIcon sx={{ fontSize: 100 }} />
               </Icon>
-              <ServicesTitle>1对1服务沟通支持</ServicesTitle>
+              <ServicesTitle>Service3</ServicesTitle>
               <ServicesText>
-                为合作方提供7×24小时的1对1服务，提供快速技术顾问指导。
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </ServicesText>
             </Services>
             <Services>
               <Icon>
                 <GroupsIcon sx={{ fontSize: 100 }} />
               </Icon>
-              <ServicesTitle>专业数据维护开发团队</ServicesTitle>
+              <ServicesTitle>Service4</ServicesTitle>
               <ServicesText>
-                深耕15年的经验，对市场用户的深入了解，帮助您的产品获得更多用户的青睐。
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </ServicesText>
             </Services>
           </Container>

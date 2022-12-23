@@ -27,7 +27,7 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    AuthService.isLogin() && window.open('https://ku487.com');
+    AuthService.isLogin() && window.open('https://google.com');
     !AuthService.isLogin() && navigate('/login');
   };
   return (
@@ -40,7 +40,7 @@ const Index = () => {
           onClick={handleClick}
           variant='primary'
         >
-          588娱乐城
+          前往平台
         </Btn>
       </InnerContainer>
       <BottomNavbar />

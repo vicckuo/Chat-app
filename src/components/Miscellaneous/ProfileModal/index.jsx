@@ -34,12 +34,7 @@ const Index = ({ user }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => {
-    if (!currentUser.user.isAdmin) {
-      return toast.error('只有管理员可以查看', toastOptions);
-    }
-    setShow(true);
-  };
+  const handleShow = () => setShow(true);
 
   const currentUser = useContext(UserContext);
 

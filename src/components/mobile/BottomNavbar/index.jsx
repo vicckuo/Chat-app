@@ -44,7 +44,7 @@ const Index = () => {
               label='客服'
               icon={<TextsmsIcon />}
               LinkComponent={Link}
-              to={'/agent'}
+              to={'/chats'}
             />
             <BottomNavigationAction
               style={{ color: '#A1C5DB' }}

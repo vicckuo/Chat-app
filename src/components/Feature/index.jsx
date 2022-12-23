@@ -104,63 +104,62 @@ const Index = () => {
     }
   };
   const handleClickLink = () => {
-    AuthService.isLogin() &&
-      window.open('https://www.588fifa-aw.vip:588/?p=r8689');
+    AuthService.isLogin() && window.open('https://www.google.com');
     !AuthService.isLogin() && navigate('/login');
   };
   return (
     <>
       {isMobile || isAndroid ? null : (
         <>
-          <Title>热门游戏</Title>
+          <Title>Title</Title>
           <ButtonBar>
             <NavMenu
               direction='tiyu'
               onClick={() => handleClick('tiyu')}
             >
-              体育赛事
+              Title1
             </NavMenu>
 
             <NavMenu
               direction='real'
               onClick={() => handleClick('real')}
             >
-              真人娱乐
+              Title2
             </NavMenu>
 
             <NavMenu
               direction='lottry'
               onClick={() => handleClick('lottry')}
             >
-              全球彩票
+              Title3
             </NavMenu>
 
             <NavMenu
               direction='game'
               onClick={() => handleClick('game')}
             >
-              电子游戏
+              Title4
             </NavMenu>
 
             <NavMenu
               direction='esport'
               onClick={() => handleClick('esport')}
             >
-              电子竞技
+              Title5
             </NavMenu>
 
             <NavMenu
               direction='chess'
               onClick={() => handleClick('chess')}
             >
-              真人棋牌
+              Title6
             </NavMenu>
 
             <NavMenu
               direction='fish'
               onClick={() => handleClick('fish')}
             >
-              捕鱼王
+              Title7
             </NavMenu>
           </ButtonBar>
 
