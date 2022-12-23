@@ -68,6 +68,7 @@ app.use('/api/message', messageRoute);
 // ----發佈
 
 //連結到DB
+mongoose.set('strictQuery', false);
 mongoose
   .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
@@ -79,8 +80,3 @@ mongoose
   .catch((e) => {
     console.log(e);
   });
-
-mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGO_URL, () => {
-  console.log('Connected to MongoDB');
-});
