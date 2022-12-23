@@ -92,7 +92,7 @@ const verifyUserEmail = async function verifyUserEmail(email, username, token) {
         '您好，' +
         username +
         ' 请点击链结以验证您的Email ' +
-        process.env.host +
+        process.env.host2 +
         '/#/verifyUserEmail/' +
         username +
         '/' +
