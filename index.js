@@ -7,6 +7,7 @@ const userRoute = require('./routes/userRoute');
 const chatRoute = require('./routes/chatRoute');
 const messageRoute = require('./routes/messageRoute');
 const cors = require('cors');
+// const path = require('path');
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`服務器正在${process.env.PORT}端口上運行.`);
@@ -51,6 +52,20 @@ app.use(cors());
 app.use('/api/auth', userRoute);
 app.use('/api/chat', chatRoute);
 app.use('/api/message', messageRoute);
+
+// ----發佈
+// const __dirname1 = path.resolve();
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname1, './build')));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname1, 'build', 'index.html'));
+//   });
+// } else {
+//   app.get('/', (req, res) => {
+//     res.send('API成功運行中');
+//   });
+// }
+// ----發佈
 
 //連結到DB
 mongoose

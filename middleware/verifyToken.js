@@ -87,7 +87,7 @@ const verifyUserEmail = async function verifyUserEmail(email, username, token) {
     await transporter.sendMail({
       from: process.env.EMAIL_ACC,
       to: email,
-      subject: '【全球梦体育】Email验证信',
+      subject: '【Chat App】Email验证信',
       html:
         '您好，' +
         username +
