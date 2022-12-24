@@ -1,6 +1,8 @@
 # React Chat App Web
 
-## [Demo](https://vicckuo.github.io/Chat-app)
+MERN APP
+
+[Demo](https://vicckuo.github.io/Chat-app)
 
 ## Feature
 
