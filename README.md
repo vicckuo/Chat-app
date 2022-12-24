@@ -6,11 +6,7 @@
 
 ### 1 on 1 chat
 
-![image](https://drive.google.com/uc?export=view&id=1L-ynOO0Dm7fo6XhQbHc5jIgqYhMYZK9b)
-
 ### Group chat
-
-![image](https://drive.google.com/uc?export=view&id=1gNwKug9rRny3ib9GRczCb5pVC1ERhsPp)
 
 ### Notification
 
